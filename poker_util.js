@@ -32,10 +32,10 @@ trof_withdraw = function(){
 		withdraw_popup.location = url;
 		var timer = setInterval(function(){
 			if (withdraw_popup.closed) {
-				console.log('Withdraw window closed');
+//console.log('Withdraw window closed');
 				clearInterval(timer);
 			}
-		}, 500);
+		}, 100);
 	})
 	.fail(function(){
 		$('body').off('click', '.messagebox_button_done');
@@ -66,11 +66,11 @@ trof_deposit = function(){
 			deposit_popup.location = url;
 			var timer = setInterval(function(){
 				if (deposit_popup.closed) {
-					console.log('Deposit window closed');
+//console.log('Deposit window closed');
 //here we do update everything   
 					clearInterval(timer);
 				}		
-			}, 500);
+			}, 100);
 
 		} 
 		else 
@@ -89,13 +89,13 @@ trof_deposit = function(){
 
 window.addEventListener('message', function(event) {
     if( event.data === 'vp_deposit'){
-		console.log('Deposit completed');
+//console.log('Deposit completed');
 		trof_wins_after_bonus = 9999;
 		trof_update();
 		$("#vp_balance").effect( "highlight", {color:'lightgreen'}, 1000 );
 	}
     if( event.data === 'vp_withdraw'){
-		console.log('Withdraw completed');
+//console.log('Withdraw completed');
 		trof_wins_after_bonus = 0;
 		trof_update(); 
 		$("#vp_balance").effect( "highlight", {color:'lightblue'}, 500 );
@@ -108,7 +108,8 @@ trof_update = function(){
 	form.deal.disabled = true; 
 //console.log('--about to update');
 	$.post("a_poker.php?action=update", {async:true},function(data, status){
-var d = new Date();var n = d.toLocaleTimeString();console.error(n + ' '+data);
+var d = new Date();var n = d.toLocaleTimeString();
+//console.error(n + ' '+data);
         trof_n = data.split(',');
 		var was_winnings = winnings;		
 		winnings = parseInt(trof_n[5]);
