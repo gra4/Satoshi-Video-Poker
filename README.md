@@ -4,8 +4,7 @@ Satoshi Video Poker
 
  * [play the game](http://gra4.com/games/vp)
  
-Installation
-============
+>> *Installation*:
  * Unzip to some web directory.
  * Register at [Cryptoo.me](https://cryptoo.me/register/)
  * Create New Faucet (App) [here](https://cryptoo.me/faucets/), grab the *API Key*
