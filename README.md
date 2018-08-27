@@ -13,5 +13,6 @@ Installation
  * That's it, you good to go :) 
 
 
->> *Note1*: This app needs to be able to CURL to the outside to talk to [Cryptoo.me API](https://cryptoo.me/api-doc/) , so my not work on some free hostings.
->> *Note2*: It is strongly recommended to make sure you have proper favicon.ico, so your game looks nice in the [list](https://cryptoo.me/rotator/)
+>> *Notes*:
+ * This app needs to be able to CURL to the outside to talk to [Cryptoo.me API](https://cryptoo.me/api-doc/) , so my not work on some free hostings.
+ * It is strongly recommended to make sure you have proper favicon.ico, so your game looks nice in the [list](https://cryptoo.me/rotator/)
