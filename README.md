@@ -1,5 +1,6 @@
 Satoshi Video Poker
 ===================
+version 1.0.1
 
 
  * [play the game](http://gra4.com/games/vp)
