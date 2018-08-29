@@ -113,8 +113,13 @@ function checkwin()
 	$trof_b_fullhouse = 9; 		//bonus  
 	$trof_b_four = 25;			//bonus
 	$trof_b_straitflush = 50; 	//bonus 
-	$trof_b_royalflush = 800; 	//bonus 
+	$trof_b_royalflush = 250; 	//bonus 800?
 
+	if($_SESSION["cm_cardvals"] == '') //shall never happen
+	{
+		return(0 . ',' . $_SESSION["cm_balance"] . ',' . 0 .  ',' . 'Internal error');
+	}
+	
     $msg = '';
 	$bet = $_SESSION["cm_bet"];
 	$cardvals = explode(',',$_SESSION["cm_cardvals"]);
@@ -227,6 +232,9 @@ function checkwin()
 		$msg .= " You win $won satoshi !";
 	}
 	
+	//drop cardvals
+	$_SESSION["cm_cardvals"] = '';
+
 	return($won . ',' . $balance . ',' . $win_after_bonus .  ',' .  $msg);
 	
 }//checkwin
