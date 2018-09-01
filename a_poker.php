@@ -54,12 +54,17 @@ if($action == 'update')
 		$_SESSION["cm_bet"] = 1;
 	}
 	$balance = intval($_SESSION["cm_balance"]);
-	if($balance == 0)
+	if(!isset($_SESSION["cm_bonuses_diven"]))
+	{
+		$_SESSION["cm_bonuses_diven"] = 0;
+	}
+	if( ($balance == 0) && ($_SESSION["cm_bonuses_diven"] < $bonuses_before_deposit))
 	{
 		$initial_bonus = rand($minimum_initial_bonus,$maximum_initial_bonus);
 		$_SESSION["cm_balance"] = $initial_bonus;
 		$msg = "You've got bonus $initial_bonus satoshi";
 		$_SESSION["cm_wins_after_bonus"] = 0; //no withdraw until  >= $bonus_wins_before_withdraw
+		$_SESSION["cm_bonuses_diven"] = $_SESSION["cm_bonuses_diven"] + 1;
 	}	
 	echo('0,0,0,0,0,' .$_SESSION["cm_balance"] . ',' . $_SESSION["cm_bet"] .',' . $_SESSION["cm_wins_after_bonus"] .','. $msg);
 	exit;

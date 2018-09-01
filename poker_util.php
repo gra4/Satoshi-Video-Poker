@@ -17,6 +17,8 @@ function js_settings_out()
 	global $maximum_deposit;
 	global $minimum_deposit;
 	global $balance_page_leave_confirm;
+	global $bonuses_before_deposit;
+	global $stop_if_adblock;
 	$rand_bg_id = rand(1,9);
 	echo("
 	<script>
@@ -25,6 +27,8 @@ function js_settings_out()
 	var maximum_deposit = $maximum_deposit;
 	var minimum_deposit = $minimum_deposit;
 	var balance_page_leave_confirm = $balance_page_leave_confirm;
+	var bonuses_before_deposit = $bonuses_before_deposit;
+	var stop_if_adblock = $stop_if_adblock;
 	var rand_bg_id = $rand_bg_id;
 	</script>
 	");

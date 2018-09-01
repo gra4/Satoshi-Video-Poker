@@ -55,6 +55,7 @@ function step_two()
 				$balace = intval($_SESSION["cm_balance"]);
 				$balace += intval($out_ison->invoice->amount);
 				$_SESSION["cm_balance"] = $balace;
+				$_SESSION["cm_bonuses_diven"] = 0;
 				$ret = 'Balance: ' . $balace . ' satoshi';
 				$deposits = intval($_SESSION["cm_deposits"]);
 				$deposits++;

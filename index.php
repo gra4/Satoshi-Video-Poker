@@ -16,12 +16,18 @@
 
 	<link href="lib/messagebox.css" rel="stylesheet">
 	<script src="lib/messagebox.js"></script>
-	<script src="lib/advertisment.js"></script>
 	
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">	
 
-	<?php include_once("poker_util.php"); js_settings_out()?>	
+	<?php 
+		include_once("poker_util.php"); 
+		if($stop_if_adblock)
+			echo("\n<script src='lib/advertisment.js'></script>\n");
+		js_settings_out();
+	
+	?>	
+
     <script src="poker.js"></script>	
     <script src="poker_util.js"></script>	
 	
@@ -144,11 +150,11 @@ table {
 			<tr>
 		
 	<td colspan="2" width="50%">
-		<input onclick="trof_deposit()" type="button" value="Deposit" style="width:100%" />
+		<input id="cm_deposit"  onclick="trof_deposit()" type="button" value="Deposit" style="width:100%" />
 	
 	</td>
 	<td colspan="2">
-		<input onclick="trof_withdraw()" type="button" value="Withdraw" style="width:100%" />
+		<input id="cm_withdraw" onclick="trof_withdraw()" type="button" value="Withdraw" style="width:100%" />
 	</td>
 			</tr>
 			<tr>
@@ -205,7 +211,10 @@ table {
 
 
 <hr>
-Based on <a target=_new href="https://cryptoo.me/api-doc/">Cryptoo.me API</a>.
+Based on <a target=_blank href="https://cryptoo.me/api-doc/">Cryptoo.me API</a>.
+<br>
+Source code of Satoshi Video Poker released on the <a target=_blank href="https://github.com/gra4/Satoshi-Video-Poker">GitHub</a>, feel free to download and run.
+
 
 
 

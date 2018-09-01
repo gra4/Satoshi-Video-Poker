@@ -29,6 +29,21 @@ for ( var i = 0; i < 52; i++ ) {
 back.src = "img/b"+rand_bg_id+".gif";                        //  Store image for back of cards
 
 
+$(document).ready(function(){
+	setTimeout(function(){
+		if($("#vp_balance").val() == 0){
+			animate_deposit();
+		}	
+	},1000);
+});
+
+animate_deposit = function()
+{
+	$("#vp_balance").effect( "highlight", {color:'red'}, 800,function(){
+		$("#cm_deposit").effect("shake", { direction: 'up',times:3,distance:5 },1000 ).effect( "highlight", {color:'lightgreen'}, 1000 );
+	});
+}
+
 //  function dealcards() - randomly deals five cards or trade selected cards, called by clicking button
 
 function dealcards(form) {
@@ -52,6 +67,18 @@ function dealcards(form) {
 	  });
 	  return;                                                       //  ...then go back for another try
     }
+
+	if(parseInt(form.money.value) == 0 )
+	{
+		$("#vp_balance").effect( "highlight", {color:'red'}, 800,function(){
+			$.MessageBox("You have 0 satoshi!"+"<br>"+"Please deposit some"
+			).done(function(data){
+				animate_deposit();
+			});
+		});
+		return;
+	}
+	
     if ( parseInt(form.bet.value) > parseInt(form.money.value) ) {  //  Check we aren't betting more than we have
 //      alert("You don't have that much money to bet!");              //  Alert if we are...
 	  $.MessageBox("You don't have that much money to bet!"+"<br>"+"Bet set to 1 satoshi"
@@ -185,7 +212,7 @@ function checkwin(form) {
     
 		if ( !winnings ) {
 			newdeal = 2;
-			$.MessageBox("You've run out of money! Click 'OK' to reset."
+			$.MessageBox("You've run out of satoshi! Click 'OK' to reset."
 			).done(function(data){
 				window.location.reload();
 				return;

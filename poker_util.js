@@ -174,12 +174,10 @@ window.onbeforeunload = function(){
 	return undefined;
 };
 
-//well if you are here - this thing is to 
+
 abcheck = function() {
-return true; //uncomment for detecting adblock, so you make some on banner ads
 	var t = document.getElementById("tester");
-//console.log(t)
-	if((!t)) {
+	if( (!t) && (stop_if_adblock != 0) ) {
 		$.MessageBox("Please disable AdBlock"
 		).done(function(data){
 			window.location.reload();
