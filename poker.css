@@ -1,0 +1,46 @@
+.poker_wait{
+	cursor:wait !important; 
+}
+
+.maintable_wrapper{
+	margin: 15px;
+	padding:25px;
+	font-family:Arial;
+	font-size:14px;
+}
+.maintable_wrapper .flip {cursor: alias;}
+.maintable_wrapper .noflip {cursor: not-allowed;}
+.maintable_wrapper .card{
+	background: white;
+	padding: 3px;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 73px;
+	height: 97px;
+}
+.maintable_wrapper .maintable {
+  position: relative;
+  padding: 3px;
+}
+.maintable_wrapper .maintable:after {
+  content: "";
+  background:var(--poker-bg-img);
+  opacity: 0.8;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+  border-radius: 10px;
+  border: 3px gold ridge;
+}
+.maintable_wrapper .vp_msg {
+	border: 0;
+	background: lightyellow;
+	border-radius: 3px;
+	width:100%;
+}
+.maintable_wrapper #deal{
+	width:50%;
+}

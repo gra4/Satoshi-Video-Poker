@@ -8,7 +8,8 @@ called via ajax
 */
 session_start();
 session_cache_expire(180); //minutes
-include_once('cm_settings.php');
+include_once( dirname(__FILE__) . DIRECTORY_SEPARATOR .  'poker_get_settings.php');
+include_once( dirname(__FILE__) . DIRECTORY_SEPARATOR .  'poker_lang.php');	
 
 $action = $_GET['action'];
 
@@ -25,7 +26,7 @@ if($action == 'deal')
 	{
 		$pat = '11111'; //reset. no cheating!
 		$bet = intval($_GET['bet']);
-		if( ($bet > 0) && ( ($_SESSION["cm_balance"] - $bet) > 0) )
+		if( ($bet > 0) && ( ($_SESSION["cm_balance"] - $bet) >= 0) )
 		{
 			$_SESSION["cm_bet"] = $bet;
 		}
@@ -62,7 +63,7 @@ if($action == 'update')
 	{
 		$initial_bonus = rand($minimum_initial_bonus,$maximum_initial_bonus);
 		$_SESSION["cm_balance"] = $initial_bonus;
-		$msg = "You've got bonus $initial_bonus satoshi";
+		$msg = str_replace('%n', $initial_bonus, poker_text('poker_got_gonus'));
 		$_SESSION["cm_wins_after_bonus"] = 0; //no withdraw until  >= $bonus_wins_before_withdraw
 		$_SESSION["cm_bonuses_diven"] = $_SESSION["cm_bonuses_diven"] + 1;
 	}	
@@ -118,7 +119,7 @@ function checkwin()
 	$trof_b_fullhouse = 9; 		//bonus  
 	$trof_b_four = 25;			//bonus
 	$trof_b_straitflush = 50; 	//bonus 
-	$trof_b_royalflush = 250; 	//bonus 800?
+	$trof_b_royalflush = 800; 	//bonus 800? huh!
 
 	if($_SESSION["cm_cardvals"] == '') //shall never happen
 	{
@@ -171,11 +172,11 @@ function checkwin()
   if ( $cardvals[4] - $cardvals[1] == 3  &&                //  Consistent with 
        $cardvals[4] - $cardvals[0] == 12 &&                //  A, T, J, Q, K...
        $flush ) {                                       
-    $msg = "Royal flush!";
+    $msg = poker_text('royal_flush') . '!';
     $won = $bet * $trof_b_royalflush;
   }
   else if ( $cardvals[4] - $cardvals[0] == 4 && $flush ) {  //  If we also have a flush, then its a royal flush
-    $msg = "Straight flush!";
+    $msg = poker_text('straight_flush') . '!';
     $won = $bet * $trof_b_straitflush;
   }
 
@@ -189,40 +190,40 @@ function checkwin()
 
   if ( $won == 0 ) {                                      // Don't check further if we've already won
     if ( $fours > 0 ) {
-      $msg = "Four of a kind!";
+      $msg = poker_text('four_of_a_kind') . '!';
       $won = $bet * $trof_b_four;
     }
     else if ( $threes && $pairs ) {
-      $msg = "Full house!";
+      $msg = poker_text('full_house') . '!';
       $won = $bet * $trof_b_fullhouse;
     }
     else if ( $flush ) {
-      $msg = "A flush!";
+      $msg = poker_text('a_flush') . '!';
       $won = $bet * $trof_b_flush;
     }
     else if ( $cardvals[4] - $cardvals[3] == 1 && $cardvals[3] - $cardvals[2] == 1 &&
               $cardvals[2] - $cardvals[1] == 1 && ( $cardvals[1] - $cardvals[0] == 1 ||
               $cardvals[4] - $cardvals[0] == 12 ) ) {
-      $msg = "A straight!";
+      $msg =  poker_text('a_straight') . '!';
       $won = $bet * $trof_b_straight;
     }
     else if ( $threes ) {
-      $msg = "Three of a kind!";
+      $msg = poker_text('three_of_a_kind') . '!';
       $won = $bet * $trof_b_threes;
     }
     else if ( $pairs == 2 ) {
-      $msg = "Two pair!";
+      $msg = poker_text('two_pair') . '!';
       $won = $bet * $trof_b_twopair;
     }
     else if ( $matched[0]  == 2 ||
               $matched[10] == 2 ||             
               $matched[11] == 2 ||             
               $matched[12] == 2 ) {
-      $msg = "Jacks or better!";
+      $msg = poker_text('jacks_or_better') . '!';
       $won = $bet * $trof_b_jacks;
     }
     else {
-      $msg = "Almost! Deal to try again...";
+      $msg = poker_text('almost_deal'); 
     }
   }	
 	
@@ -234,7 +235,7 @@ function checkwin()
 		$_SESSION["cm_wins_after_bonus"] = $win_after_bonus;
 		$balance += $won;
 		$_SESSION["cm_balance"] = $balance;
-		$msg .= " You win $won satoshi !";
+		$msg .= ' ' . str_replace('%n', $won, poker_text('you_won')) . ' !'; 
 	}
 	
 	//drop cardvals

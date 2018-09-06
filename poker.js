@@ -22,11 +22,11 @@ for ( var i = 0; i < 5; i++ ) {
 
 for ( var i = 0; i < 52; i++ ) {
   cardimg[i]     = new Image(73,97);                   //  Create image array for whole deck
-  cardimg[i].src = "img/" + (i+1) + ".gif";   //  Precache all the card images
+  cardimg[i].src = poker_main_url + "img/" + (i+1) + ".gif";   //  Precache all the card images
   picked[i]      = 0;                                  //  Set picked flags to unpicked
 }
 
-back.src = "img/b"+rand_bg_id+".gif";                        //  Store image for back of cards
+back.src = poker_main_url + "img/b"+rand_bg_id+".gif";                        //  Store image for back of cards
 
 
 $(document).ready(function(){
@@ -49,14 +49,14 @@ animate_deposit = function()
 function dealcards(form) {
   if ( !newdeal ) {                                                 //  Player has flipped his unwanted cards
     newdeal = 1;                                                    //  Switch newdeal flag
-    form.deal.value = "Deal !";                              //  Change description on button
+    form.deal.value = poker_text_poker_deal;                              //  Change description on button
     form.bet.disabled = false;                                      //  Make 'bet' text box read only
   }
   else {
 	var b = parseInt(0 + form.bet.value);
     if ( (b < 1) || (b > maximum_bet) ) {                         //  Check that 'bet' text box contains valid integer
  //     alert("You must enter an integer in the 'bet' field!");       //  Alert if it doesn't...
-	  $.MessageBox("You must enter bet value between <b>1</b> and <b>" + maximum_bet + "</b>"
+	  $.MessageBox(poker_text_must_bet_value + " <b>1</b> "+poker_text_and+" <b>" + maximum_bet + "</b>"
 	  ).done(function(data){
 	    $("#vp_bet").effect( "highlight", {color:'red'}, 800, function(){
 			form.bet.focus();                                             //  ...then return focus to text box...
@@ -71,7 +71,7 @@ function dealcards(form) {
 	if(parseInt(form.money.value) == 0 )
 	{
 		$("#vp_balance").effect( "highlight", {color:'red'}, 800,function(){
-			$.MessageBox("You have 0 satoshi!"+"<br>"+"Please deposit some"
+			$.MessageBox(poker_text_you_have_zero + "!"+"<br>"+poker_text_deposit_some
 			).done(function(data){
 				animate_deposit();
 			});
@@ -80,8 +80,7 @@ function dealcards(form) {
 	}
 	
     if ( parseInt(form.bet.value) > parseInt(form.money.value) ) {  //  Check we aren't betting more than we have
-//      alert("You don't have that much money to bet!");              //  Alert if we are...
-	  $.MessageBox("You don't have that much money to bet!"+"<br>"+"Bet set to 1 satoshi"
+	  $.MessageBox(poker_text_not_that_much+"!<br>"+poker_text_bet_to_1
 	  ).done(function(data){
 		$("#vp_bet").effect( "highlight", {color:'red'}, 800,function(){
 			form.bet.focus();                                             //  ...then return focus to text box...
@@ -101,7 +100,7 @@ function dealcards(form) {
       picked[i] = 0;                                                //  Reset picked status of entire deck
     }
 
-    form.info.value   = "Click the cards you want to trade";        //  Update info box
+    form.info.value   = poker_text_click_cards_to_reade;        //  Update info box
     bet               = form.bet.value;                             //  Get amount to bet...
     winnings         -= bet;                                        //  ...deduct it from winnings...
     form.money.value  = winnings;                                   //  ...and update winnings
@@ -129,7 +128,9 @@ function dealcards(form) {
 	e_params = "pat="+pat;
   }
  
-  $.post("a_poker.php?action=deal&"+e_params, {async:true},function(data, status){
+  setWait(true);
+  $.post(poker_main_url+"a_poker.php?action=deal&"+e_params, {async:true},function(data, status){
+	setWait(false);
 //console.log(data);
     trof_n = data.split(',');
 		
@@ -148,7 +149,7 @@ function dealcards(form) {
 		picked[n] = 1;                                                //  Got it, so set picked flag
 		cards[i].src = cardimg[n].src;                                //  Update card image array
 //update screen
-		document.images[i+imgoffset].src = cardimg[n].src;               //  Update on screen
+		document.images[i+imgoffset].src =  cardimg[n].src;               //  Update on screen
 
 /*	
 		$('#vp_c'+i).effect( "size", {to: { width: 1, height: 97 }}, 1, function(){
@@ -180,7 +181,7 @@ function flipcard(i) {
     return;
   }
 
-
+	setWait(true);
   if ( !flipped[i] ) {                        //  Either flip card over...
     document.images[i+imgoffset].src = back.src;
     flipped[i] = 1;
@@ -189,7 +190,9 @@ function flipcard(i) {
     document.images[i+imgoffset].src = cards[i].src;
     flipped[i] = 0;
   }
+  setWait(false);
 }
+
 
 
 function checkwin(form) {
@@ -198,9 +201,10 @@ function checkwin(form) {
 		return;
 	}
 	var won = 0;                                //  1 if there's a winning hand, 0 if not
-	$.post("a_poker.php?action=trade", {async:true},function(data, status){
+	setWait(true);
+	$.post(poker_main_url+"a_poker.php?action=trade", {async:true},function(data, status){
 //console.info(data);
-	
+		setWait(false);
 		trof_n = data.split(',');
 		won = parseInt(trof_n[0]);
 		winnings = parseInt(trof_n[1]);
@@ -212,19 +216,12 @@ function checkwin(form) {
     
 		if ( !winnings ) {
 			newdeal = 2;
-			$.MessageBox("You've run out of satoshi! Click 'OK' to reset."
+			$.MessageBox(poker_text_no_satoshi_reset
 			).done(function(data){
 				window.location.reload();
 				return;
 			});
-/*
-			trof_update();
-			form.info.value = "It's time to play! Click button to deal!";
-			for ( var i = 0; i < 5; ++i ) {
-				flipped[i] = 0;
-				flipcard(i);
-			}
-*/
+
 		}
 		if ( won > 0 ) 
 		{

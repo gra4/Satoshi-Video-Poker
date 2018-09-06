@@ -2,11 +2,11 @@
 
 /*settings for Cryptoo.me transfers */
 
-// API key, required to deposit/withdraw satoshi
+// api key, requierd to deposit/withdraw satoshi
 // looks like '8f8759603582392fe13bb09df70d09332e79a4b5'
 // Get it at https://cryptoo.me
-// register (it is free indeed), navigate to https://cryptoo.me/faucets/ , 
-// create Faucet (app), and enter API Key here.
+//  register (it is fre), navigate to https://cryptoo.me/faucets/, 
+//   create Faucet (app), and use it here.
 //KEEP SECRET !!!
 $api_key = ''; //MUST BE CONFIGURED!!!
 
@@ -34,6 +34,6 @@ $minimum_deposit = 5; //let it be
 $balance_page_leave_confirm = 10;
 
 //minimum balance causing page leave confirmation
-$stop_if_adblock = 0; //if 1 game is not going to run while AdBlock is active, 0 - AdBlock ignored
+$stop_if_adblock = 1; //if 1 game is not going to run while AdBlock is active, 0 - AdBlock ignored
 
  

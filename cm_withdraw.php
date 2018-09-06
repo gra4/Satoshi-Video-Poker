@@ -1,7 +1,8 @@
 <?php
 //relies on session! don't forget tto do session_start(); in the main page! 
 session_start();
-include_once('cm_settings.php');
+include_once( dirname(__FILE__) . DIRECTORY_SEPARATOR .  'poker_get_settings.php');
+
 if($api_key == '')
 {
 	die('Please provide correct $api_key in the cm_settings.php');
@@ -20,7 +21,7 @@ if(isset($_GET['address']))
 	}
 	else
 	{
-		die('Address is not set');//go away
+		die('Address must me set');//go away
 	}
 }
 
