@@ -12,6 +12,9 @@ version 1.0.3
  * Enter the the *API Key* in file *cm_settings.php* as *$api_key* variable.
  * That's it, you good to go :) 
 
+>> *WordPress*:
+ * This functionality also available via [WordPress plugin](https://wordpress.org/plugins/simple-bitcoin-faucets/)
+
 
 >> *Notes*:
  * This app needs to be able to CURL to the outside to talk to [Cryptoo.me API](https://cryptoo.me/api-doc/) , so my not work on some free hostings.
