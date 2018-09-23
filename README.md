@@ -1,6 +1,6 @@
 Satoshi Video Poker
 ===================
-version 1.0.3
+version 1.0.4
 
 
  * [play the game](http://gra4.com/games/vp)
@@ -22,6 +22,7 @@ version 1.0.3
  
  >> *Changes*:
  
+  * Version 1.0.4 - minor https fixes
   * Version 1.0.3 - minor fixes, ready for localization
   * Version 1.0.2 - configuration streamlined, AdBlock-awareness
   * Version 1.0.1 - security fix
