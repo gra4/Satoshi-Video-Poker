@@ -89,7 +89,16 @@ function step_one($amount)
 		die('cURL is not enabled on this hosting');
 	}
 	global $api_key;
-	$self_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+	
+	if( (! empty($_SERVER['REQUEST_SCHEME']) && $_SERVER['REQUEST_SCHEME'] == 'https') ||
+		(! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ||
+		(! empty($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443') ) {
+		$server_request_scheme = 'https';
+	} else {
+		$server_request_scheme = 'http';
+	}
+	
+	$self_url = $server_request_scheme . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 	if ($pos_get = strpos($self_url, '?')) 
 	{
 		$self_url = substr($self_url, 0, $pos_get);

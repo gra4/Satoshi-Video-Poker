@@ -1,6 +1,6 @@
 Satoshi Video Poker
 ===================
-version 1.0.4
+version 1.0.5
 
 
  * [play the game](http://gra4.com/games/vp)
@@ -21,7 +21,8 @@ version 1.0.4
  * It is strongly recommended to make sure you have proper favicon.ico, so your game looks nice in the [list](https://cryptoo.me/rotator/)
  
  >> *Changes*:
- 
+
+  * Version 1.0.5 - Nginx compatibility fix
   * Version 1.0.4 - minor https fixes
   * Version 1.0.3 - minor fixes, ready for localization
   * Version 1.0.2 - configuration streamlined, AdBlock-awareness
