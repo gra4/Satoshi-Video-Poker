@@ -18,7 +18,7 @@ version 1.0.6
 
 >> *Notes*:
  * This app needs to be able to CURL to the outside to talk to [Cryptoo.me API](https://cryptoo.me/api-doc/) , so my not work on some free hostings.
- * It is strongly recommended to make sure you have proper favicon.ico, so your game looks nice in the [list](https://cryptoo.me/rotator/?BTCREF=1GHrzqB6Ngab1gvZDd2tyTXxigziy26L6s)
+ * It is strongly recommended to make sure you have proper favicon.ico, so your game looks nice in the [Active Applications List](https://cryptoo.me/rotator/?BTCREF=1GHrzqB6Ngab1gvZDd2tyTXxigziy26L6s).
  
  >> *Changes*:
 
