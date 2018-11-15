@@ -9,7 +9,7 @@ include_once( dirname(__FILE__) . DIRECTORY_SEPARATOR .  'poker_get_settings.php
 
 function poker_get_main_url() //change for plugins!
 {
-	$url = "http".(!empty($_SERVER['HTTPS'])?"s":""). "://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+	$url = "http".(!empty($_SERVER['HTTPS'])?"s":""). "://".$_SERVER['SERVER_NAME'].parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 	return($url); //real must end with '/'
 }
 

@@ -1,14 +1,14 @@
 Satoshi Video Poker
 ===================
-version 1.0.5
+version 1.0.6
 
 
  * [play the game](http://gra4.com/games/vp)
  
 >> *Installation*:
  * Unzip to some web directory.
- * Register at [Cryptoo.me](https://cryptoo.me/register/)
- * Create New Faucet (App) [here](https://cryptoo.me/faucets/), grab the *API Key*
+ * Register with [Cryptoo.me](https://cryptoo.me/?BTCREF=1GHrzqB6Ngab1gvZDd2tyTXxigziy26L6s)
+ * Create New Application [here](https://cryptoo.me/faucets/), grab the *API Key*
  * Enter the the *API Key* in file *cm_settings.php* as *$api_key* variable.
  * That's it, you good to go :) 
 
@@ -18,10 +18,11 @@ version 1.0.5
 
 >> *Notes*:
  * This app needs to be able to CURL to the outside to talk to [Cryptoo.me API](https://cryptoo.me/api-doc/) , so my not work on some free hostings.
- * It is strongly recommended to make sure you have proper favicon.ico, so your game looks nice in the [list](https://cryptoo.me/rotator/)
+ * It is strongly recommended to make sure you have proper favicon.ico, so your game looks nice in the [list](https://cryptoo.me/rotator/?BTCREF=1GHrzqB6Ngab1gvZDd2tyTXxigziy26L6s)
  
  >> *Changes*:
 
+  * Version 1.0.6 - Path parsing fixed.
   * Version 1.0.5 - Nginx compatibility fix
   * Version 1.0.4 - minor https fixes
   * Version 1.0.3 - minor fixes, ready for localization
