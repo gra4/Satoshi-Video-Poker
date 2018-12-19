@@ -6,8 +6,11 @@ called via ajax
 ?action=update
 	
 */
-session_start();
-session_cache_expire(180); //minutes
+if(!isset($_SESSION)){  
+         session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly);
+         @session_regenerate_id(true);    
+             session_start();
+}
 include_once( dirname(__FILE__) . DIRECTORY_SEPARATOR .  'poker_get_settings.php');
 include_once( dirname(__FILE__) . DIRECTORY_SEPARATOR .  'poker_lang.php');	
 
