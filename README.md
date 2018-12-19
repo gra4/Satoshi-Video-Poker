@@ -8,7 +8,7 @@ version 1.0.7
 >> *Installation*:
  * Unzip to some web directory.
  * Register with [Cryptoo.me](https://cryptoo.me/?BTCREF=1GHrzqB6Ngab1gvZDd2tyTXxigziy26L6s)
- * Create New Application [here](https://cryptoo.me/faucets/), grab the *API Key*
+ * Create New Application [here](https://cryptoo.me/applications/), grab the *API Key*
  * Enter the the *API Key* in file *cm_settings.php* as *$api_key* variable.
  * That's it, you good to go :) 
 
